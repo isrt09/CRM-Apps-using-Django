@@ -33,7 +33,7 @@ class Product(models.Model):
 	class Meta:
 		verbose_name 		= 'Product'
 		verbose_name_plural = 'Products'
-		
+
 
 class Tag(models.Model):
 	name = models.CharField(max_length=200, null=True)
@@ -48,9 +48,10 @@ class Order(models.Model):
 			('Out for delivery', 'Out for delivery'),
 			('Delivered', 'Delivered'),
 			)	
-	
-	date_created = models.DateTimeField(auto_now_add=True, null=True)
-	status = models.CharField(max_length=200, null=True, choices=STATUS)
+	customer 		= models.ForeignKey(Customer,null=True,on_delete=models.SET_NULL)
+	product  		= models.ForeignKey(Product,null=True,on_delete=models.SET_NULL)
+	date_created 	= models.DateTimeField(auto_now_add=True, null=True)
+	status 			= models.CharField(max_length=200, null=True, choices=STATUS)
 
 	class Meta:
 		verbose_name 		= 'Order'
