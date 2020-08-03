@@ -27,9 +27,19 @@ class Product(models.Model):
 	description = models.TextField()
 	date_create = models.DateTimeField(auto_now_add=True,null=True)	
 
+	def __str__(self):
+		return self.name
+
 	class Meta:
 		verbose_name 		= 'Product'
 		verbose_name_plural = 'Products'
+		
+
+class Tag(models.Model):
+	name = models.CharField(max_length=200, null=True)
+
+	def __str__(self):
+		return self.name
 
 class Order(models.Model):
 
